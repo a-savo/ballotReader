@@ -1,0 +1,68 @@
+---
+title: "GOVT-496 Final Project Memo"
+author: "Alyssa Savo"
+date: "March 5, 2018"
+output: pdf_document
+header-includes:
+  - \setlength{\parindent}{4em}
+  - \setlength{\parskip}{0em}
+---
+
+Quantitative analysis and visualization of election results at local levels is a rapidly growing area of interest for many professionals interested in American politics, including journalists, academics, government officials, and political campaign staff. Despite this, obtaining local-level election results remains incredibly difficult and time consuming for most races. Election results, made available by the Board of Elections or local equivalent of each state and county, are rarely available in compact, well-formatted csv or xls files conductive to analysis. Most Board of Elections websites instead present elections results in "ugly" and difficult to use PDF files or web pages at best; many county websites only have scanned images of results which must be run through ocular character recognition (OCR) software or do not make election results available online at all.
+
+There are a number of steps that need to be taken in order to convert PDF files and web pages into data suitable for analysis and visualization. Unnecessary whitespace and metadata must be removed, along with column names duplicated across pages and/or political subdivisions. Concurrent races are often aggregated into a single document or webpage, which must then be narrowed to only contain the election of interest. Congressional District-level results for other races (such as Presidential and gubernatorial elections) are not provided by states, despite the interest in calculating the partisan lean and trends for these districts during midterm elections. As a result, Congressional District-level results must be aggregated manually by joining precinct-level results for the election of interest with a list of every precinct in the Congressional District for each county contained within the District. Finally, most election board websites do not make election results downloadable in bulk, requiring that each election of interest be downloaded and reformatted separately - a task which quickly becomes tedious when analyzing election results across several years or geographic divisions. 
+
+My goal is to create an R package that will expedite several stages of this data tidying process. This project will focus on converting historical and current election results into usable data for the state of New Jersey, including its 21 counties where possible.[^1] The New Jersey Department of State's Division of Elections currently makes election results available at its online archive [(link)](http://www.njelections.org/election-information-archive.html), including state and county-level election results for statewide, Congressional, and State Legislative offices. Results for voter-referred Public Questions and monthly voter registration data is also available on the Division of Election's website. The majority of this data exists in PDF format with standardized layouts for each type of election result. In addition, each of New Jersey's counties archive local election data independently, but several counties store election data using identical layouts. For example, Bergen County [(link)](http://www.bergencountyclerk.org/web_content/pdf/elections/2017-Official-General-Election-Results.pdf), Camden County [(link)](http://www.camdencounty.com/wp-content/uploads/files/2016%20CamCo%20General%20Election%20Canvasser.pdf), and Cape May County [(link)](http://www.capemaycountyvotes.com/wp-content/uploads/2017/11/2017-General-SOV.pdf), among several others, store their election results in PDFs that use identical formatting. Because formatting is repeated across documents, it should be possible to automate the tidying process for a large number of documents.
+
+One of the primary functions that will be used to build this package is the function `extract_tables()` from the Tabulizer package [(previewable here here)](https://github.com/ropensci/tabulizer/blob/master/README.md), which takes a PDF file and extracts a list of matrices or dataframes from the tables contained in the PDF using the Tabula library in Java. Matrices and dataframes in the list then can be combined and tidied within R and saved as csv files. This is far more efficient and powerful than the common methods of copying tables from PDFs into Microsoft Excel and tidying them manually or uploading PDFs to online PDF-to-csv software. County election results that are stored on web pages will, where possible, be downloaded using functions that convert web pages into usable data, such as `read_html()` or `read_xml()` from the xml2 package. 
+
+\pagebreak
+
+An example of importing a PDF using `extract_tables()`, tidying it, and saving it as a csv file follows, using the 2017 general election results for New Jersey's 1st Legislative District:
+
+```{r message = FALSE, warning = FALSE}
+library(tidyverse)
+url <- "http://www.njelections.org/2017-results/2017-general-election-results-gen-assembly-state-senate-district-01.pdf"
+
+counties <- c("ATLANTIC","CAPE MAY","CUMBERLAND")
+
+ld_01 <- tabulizer::extract_tables(url)
+
+# Transforming the list ld_01 into a tibble:
+ld_01 <- as_tibble(do.call("rbind", ld_01), stringsAsFactors = FALSE)
+
+# Removing first row on each page which unnecessarily lists the race:
+ld_01 <- ld_01[-1,]
+
+# Make the row containing each candidate into column names, removing linebreaks that 
+# separate the candidate from their party name in the PDF:
+colnames(ld_01) <- gsub('\r',' ',ld_01[1,])
+
+ld_01 <- ld_01 %>%
+  unique() %>%  # Filter out headers that are duplicated on each page of the PDF
+  replace(. == "", NA) %>%  # Fill empty cells with NA
+  rename(Municipality = "") %>%  # The PDF lacks a column name for the locality
+                                # column, so one is added manually
+  filter(!grepl('TOTAL',Municipality)) %>%  # Remove rows containing vote totals
+  mutate(County = ifelse(Municipality %in% counties, Municipality, NA)) %>%
+  fill(County) %>%  # Counties are listed as subheaders along with the       
+                    # localities. csv files cannot handle subheaders, so this
+                    # removes the subheaders and creates a 'county' variable to 
+                    # contain them
+  na.omit()  # Remove leftover rows that contain whitespace
+
+write_csv(ld_01, "ld-01_general-17.csv")
+```
+
+This chunk of code ultimately creates the following tibble and saves it as a csv to the current working directory:
+
+```{r}
+ld_01
+```
+
+My current goal is to create an R package containing a set of functions which will download election results from the web as PDFs or web pages, systematically tidy all of the data sets, and convert them to csv files suitable for data analysis. These functions should take advantage of standardized layouts so that PDFs and web pages can be batch-converted across several offices or years - for example, the tidying process used on the 1st Legislative District's 2017 results would be repeatable across all of New Jersey's 40 legislative districts as well as every year that the State Division of Elections has legislative election results. I also want to create some helper functions to help deal with common issues that come up in processing election data. For example, a function could be made to automatically convert county subheaders into variables as I had to do in the example. I would also like to create a function that automatically subsets precinct-level results for statewide races (Governor, Senator, etc.) into only those precincts contained in a particular Congressional District so that other races can easily be aggregated at the Congressional District level.
+
+I also plan to create a GitHub repository that goes along with the R package that will store historical election results generated using the conversion functions. Ideally the repository would contain as much data as possible, but it should at least contain clean statewide results from the Department of State's Division of Elections site for major races (Governor, U.S. Senate and House, State Legislature) for the past decade. This would help make the election data quicker and easier to access, particularly for those with limited experience in R. The functions would still be necessary to convert results from elections that occur after the package is uploaded to GitHub. The functions would also remain useful for converting election results from other states that use the same layouts as New Jersey and its counties.
+
+
+[^1]: Some counties may not have accessible election results or may already have results available to download in csv format.
