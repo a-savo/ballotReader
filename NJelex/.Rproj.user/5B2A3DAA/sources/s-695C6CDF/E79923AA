@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1524075000055.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "E79923AA",
+    "lastKnownWriteTime" : 1524168116,
+    "last_content_update" : 1524168116974,
+    "path" : "C:/Users/alyss/Google Drive/Y3/S2/Political Programming/NJelex/R/read_twocol_summary.R",
+    "project_path" : "R/read_twocol_summary.R",
+    "properties" : {
+        "cursorPosition" : "28,0",
+        "scrollLine" : "8"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
