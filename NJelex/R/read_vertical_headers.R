@@ -1,20 +1,24 @@
-# Hello, world!
-#
-# This is an example function named 'hello'
-# which prints 'Hello, world!'.
-#
-# You can learn more about package authoring with RStudio at:
-#
-#   http://r-pkgs.had.co.nz/
-#
-# Some useful keyboard shortcuts for package authoring:
-#
-#   Build and Reload Package:  'Ctrl + Shift + B'
-#   Check Package:             'Ctrl + Shift + E'
-#   Test Package:              'Ctrl + Shift + T'
+#' read_vertical_headers
+#'
+#' Reads election results from .pdf files where column titles are formatted vertically.
+#'
+#' Vertically formatted text is often formatted incorrectly when converting
+#' .pdf files to tabular data formats such as data.frames and tibbles. This
+#' function includes additional parameters to help generate well-formatted
+#' data.frames for a single race from .pdfs containing election results with
+#' vertical column headers.
+#'
+#' @author Alyssa Savo
+#'
+#' @param file A URL or path to a .pdf file.
+#' @param range An integer vector specifying the pages in the PDF for the race of interest. There currently is not a way to read multiple races at once.
+#' @param colnames A character vector containing the names for each column.
+#'
+#' @export
+#'
 
-read_vertical_results <- function(url, range, colnames) {
-  pages <- tabulizer::extract_tables(url, pages = range)
+read_vertical_results <- function(file, range, colnames) {
+  pages <- tabulizer::extract_tables(file, pages = range)
   elex <- list()
   for (i in 1:length(pages)) {
     df <- as.data.frame(pages[[i]])
@@ -23,5 +27,5 @@ read_vertical_results <- function(url, range, colnames) {
     elex[[i]] <- df
   }
   all_elex <- as.data.frame(do.call("rbind", elex), stringsAsFactors = FALSE)
-  all_elex
+  all_elex <- all_elex %>% gather(key = "Vote Choice", value = "Votes", -1)
 }
