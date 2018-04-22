@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1524438016977.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1559092681",
+    "id" : "B8CD530C",
+    "lastKnownWriteTime" : 1524439838,
+    "last_content_update" : 1524439838350,
+    "path" : "G:/My Drive/Y3/S2/Political Programming/github/ballotReader/NJelex/R/read_vertical_headers.R",
+    "project_path" : "R/read_vertical_headers.R",
+    "properties" : {
+        "cursorPosition" : "27,0",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
