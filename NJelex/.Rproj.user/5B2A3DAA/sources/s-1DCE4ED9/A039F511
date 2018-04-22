@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1524351875600.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "A039F511",
+    "lastKnownWriteTime" : 1524435976,
+    "last_content_update" : 1524435976835,
+    "path" : "G:/My Drive/Y3/S2/Political Programming/github/ballotReader/NJelex/R/read_clarity.R",
+    "project_path" : "R/read_clarity.R",
+    "properties" : {
+        "cursorPosition" : "20,0",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
