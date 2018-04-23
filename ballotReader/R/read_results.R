@@ -19,6 +19,7 @@ read_results <- function(file) {
   pages <- tabulizer::extract_tables(file)
   all_elex <- as.data.frame(do.call("rbind", test), stringsAsFactors = FALSE)
   names <- as.vector(all_elex[1,])
+  names(all_elex) <- names
   all_elex <- all_elex %>%
     unique() %>%
     fill_na() %>%

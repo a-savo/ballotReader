@@ -3,7 +3,8 @@
 #' Imports and tidies election results data from two-column summary reports.
 #'
 #' Downloads and tidies .pdf files containing election results in a standardized
-#' two-column summary format.
+#' two-column summary format - for an example, see http://www.passaiccountynj.org/ArchiveCenter/ViewFile/Item/972.
+#' Be warned that this function is pretty unreliable! Further bugtesting to come.
 #'
 #' @author Alyssa Savo
 #'
@@ -29,8 +30,11 @@ read_twocol_summary <- function(file) {
     # for candidates and one for votes
 
     # Need to fix this for pages with odd column #
-    elex[[i]] <- data.frame(Candidate = c(pages[[i]][,1],pages[[i]][,3]),
+    if (ncol(pages[[i]]) == 4) {
+      elex[[i]] <- data.frame(Candidate = c(pages[[i]][,1],pages[[i]][,3]),
                          Votes = c(pages[[i]][,2],pages[[i]][,4]))
+    }
+
     # Convert empty rows to NAs and drop them
     elex[[i]] <- elex[[i]] %>%
       fill_na() %>%
