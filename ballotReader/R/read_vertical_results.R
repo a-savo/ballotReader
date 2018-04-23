@@ -1,4 +1,4 @@
-#' read_vertical_headers
+#' read_vertical_results
 #'
 #' Reads election results from .pdf files where column titles are formatted vertically.
 #'
