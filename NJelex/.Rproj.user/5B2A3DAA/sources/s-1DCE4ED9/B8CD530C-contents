@@ -18,6 +18,7 @@
 #'
 
 read_vertical_results <- function(file, range, colnames) {
+  `%>%` <- magrittr::`%>%`
   pages <- tabulizer::extract_tables(file, pages = range)
   elex <- list()
   for (i in 1:length(pages)) {
@@ -27,5 +28,9 @@ read_vertical_results <- function(file, range, colnames) {
     elex[[i]] <- df
   }
   all_elex <- as.data.frame(do.call("rbind", elex), stringsAsFactors = FALSE)
-  all_elex <- all_elex %>% gather(key = "Vote Choice", value = "Votes", -1)
+  all_elex <- all_elex %>%
+    tidyr::gather(key = "Vote Choice", value = "Votes", -1) %>%
+    fill_na() %>%
+    na.omit()
+  all_elex
 }
