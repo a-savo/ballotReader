@@ -5,15 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "1229784571",
+    "hash" : "0",
     "id" : "E79923AA",
-    "lastKnownWriteTime" : 1524183091,
-    "last_content_update" : 1524183091,
-    "path" : "G:/My Drive/Y3/S2/Political Programming/github/ballotReader/NJelex/R/read_twocol_summary.R",
+    "lastKnownWriteTime" : 1524461125,
+    "last_content_update" : 1524461125015,
+    "path" : "G:/My Drive/Y3/S2/Political Programming/github/ballotReader/ballotReader/R/read_twocol_summary.R",
     "project_path" : "R/read_twocol_summary.R",
     "properties" : {
-        "cursorPosition" : "15,38",
-        "scrollLine" : "8"
+        "cursorPosition" : "10,43",
+        "scrollLine" : "0"
     },
     "relative_order" : 1,
     "source_on_save" : false,
