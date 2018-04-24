@@ -1,4 +1,4 @@
-#' read_clarity
+#' read_clarity_results
 #'
 #' Downloads election results using the Clarity Elections platform.
 #'
@@ -26,13 +26,13 @@
 #' number of election results.
 #' @param page_range A numeric vector containing the range of worksheets to tidy from
 #' the detail.xls file. This vector must only contain values greater than 3
-#' (i.e. 3:n). You may want to run read_clarity once with tidy_detail = FALSE and
+#' (i.e. 3:n). You may want to run read_clarity_results once with tidy_detail = FALSE and
 #' open detail.xls in another program in order to identify the worksheets of interest.
 #'
 #' @export
 #'
 
-read_clarity <- function(url, destfile, Web01 = FALSE, report = NULL, tidy_detail = FALSE, page_range = NULL) {
+read_clarity_results <- function(url, destfile, Web01 = FALSE, report = NULL, tidy_detail = FALSE, page_range = NULL) {
   if (Web01 == TRUE) {
     ID <- stringr::str_extract(url,"[A-Z][A-Z]/[A-Za-z]+/[0-9]+/[0-9]+")
     url <- paste("http://results.enr.clarityelections.com/",ID,
@@ -103,12 +103,12 @@ read_clarity <- function(url, destfile, Web01 = FALSE, report = NULL, tidy_detai
       df[2:(nrow(df)-1), "Candidate"] <- candidate_rows
 
       df <- df %>%
-        dplyr::select(Candidate, everything()) %>%
+        dplyr::select(Candidate, dplyr::everything()) %>%
         dplyr::rename("Vote Type" = !!names(.[2])) %>%
         tidyr::gather(3:ncol(df), key = "Locality", value = "Votes") %>%
         dplyr::arrange(Candidate) %>%
         dplyr::mutate(Race = title) %>%
-        dplyr::select(Race, everything())
+        dplyr::select(Race, dplyr::everything())
 
       sheets[[(i-2)]] <- df
     }

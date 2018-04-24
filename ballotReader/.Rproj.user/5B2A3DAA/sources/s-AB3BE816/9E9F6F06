@@ -5,18 +5,18 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "0",
+    "hash" : "2024983796",
     "id" : "9E9F6F06",
     "lastKnownWriteTime" : 1524465468,
     "last_content_update" : 1524465468815,
     "path" : "G:/My Drive/Y3/S2/Political Programming/github/ballotReader/ballotReader/R/read_results.R",
     "project_path" : "R/read_results.R",
     "properties" : {
-        "cursorPosition" : "16,32",
+        "cursorPosition" : "7,22",
         "scrollLine" : "0",
         "tempName" : "Untitled1"
     },
-    "relative_order" : 5,
+    "relative_order" : 3,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "r_source"

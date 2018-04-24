@@ -16,3 +16,4 @@ fill_na <- function(df) {
     replace(. == "", NA)
   df
 }
+
