@@ -1,10 +1,12 @@
 # Import and Tidy Local Election Results
 
-**ballotReader** is a set of functions designed to efficiently import and tidy local election results in a variety of standardized formats, including the Clarity Elections reporting platform and common `.pdf` formats. ballotReader is intended to eliminate time spent wrangling election results online, in Microsoft Excel, and in third-party conversion software by processing election data entirely within R, where it can then easily be saved as an analysis-friendly `.csv` file. 
+**ballotReader** is a set of functions designed to efficiently import and tidy local election results in a variety of standardized formats, including the Clarity Elections reporting platform and common `.pdf` formats. ballotReader is intended to eliminate time spent wrangling election results online, in Microsoft Excel, and in third-party conversion software by processing election data entirely within R, where it can then easily be saved as an analysis-friendly `.csv` file.
 
 Note: In order to use most ballotReader functions, users must first install the [tabulizer](https://github.com/ropensci/tabulizer) package via Github as well as a recent version of Java.
 
 ## Code Examples
+
+Input and output files from the following examples are saved in `/data` where relevant.
 
 `read_results()` is the most basic ballotReader function, designed to import and tidy tables from `.pdf` files which are already well formatted. For ballotReader's purposes, a table is well formatted if localities (counties, cities, etc.) are listed in the leftmost column, candidate vote totals are listed in each subsequent column, and none of the table text is formatted vertically. For example, the following `.pdf` from the New Jersey Division of Elections website is perfectly formatted for `read_results()`:
 
@@ -130,6 +132,12 @@ head(out[[1]], 15)
 13 For Governor / Lt. Governor (Vote For 1)           Registered Voters Belleville 2-1   662
 14 For Governor / Lt. Governor (Vote For 1)                       Total Belleville 2-1   179
 15 For Governor / Lt. Governor (Vote For 1)           Registered Voters Belleville 2-2   528
+```
+
+`get_totals()` and `drop_totals()` are helper functions that filter a data.frame to either contain or drop any rows which contain vote totals. This can be useful depending on which subset of data the user is interested in.
+
+```R
+An example
 ```
 
 ## Notes
