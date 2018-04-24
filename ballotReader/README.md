@@ -35,10 +35,40 @@ head(out, 15)
 `read_results()` also contains a `merged_header` argument, which allows .pdf tables with merged headers grouping candidates or races together [(example)](http://www.njelections.org/2017-results/2017-general-election-results-gen-assembly-state-senate-district-01.pdf) to be imported.
 
 
-`read_vertical_results()` is designed to import and tidy otherwise well-formatted .pdf tables where column names are formatted vertically. The column names must be provided manually.
+`read_vertical_results()` is designed to import and tidy otherwise well-formatted .pdf tables where column names are formatted vertically for a single race of interest. Because the `tabulizer` package struggles to correctly interpret vertically-oriented text, the column names must be provided manually. The page range must also be specified for the race of interest. `read_vertical_results()` is designed to import results from `.pdf` files like the following example from the Essex County Clerk's Office in New Jersey:
+
+[![2017 Official Primary Election Results - Democratic for Governor](https://i.imgur.com/v0VD0dA.png)](https://i.imgur.com/v0VD0dA.png)
 
 ```R
-Example
+url <- "http://www.essexclerk.com/_Content/pdf/ElectionResult/DEM_SOV_2017.pdf"
+out <- read_vertical_results(url, range = c(1:11), colnames = c("Municipality",
+                                          "Registration",
+                                          "Ballots Cast",
+                                          "Turnout (%)",
+                                          "Philip MURPHY",
+                                          "William BRENNAN",
+                                          "John S. WISNIEWSKI",
+                                          "Jim Johnson",
+                                          "Mark ZINNA",
+                                          "Raymond J. LESNIAK",
+                                          "Write-In "))
+head(out, 15)
+                    Municipality  Vote Choice Votes
+1  Belleville 1-1 - Election Day Registration   427
+2  Belleville 1-2 - Election Day Registration   412
+3  Belleville 1-3 - Election Day Registration   305
+4  Belleville 1-4 - Election Day Registration   356
+5  Belleville 1-5 - Election Day Registration   383
+6  Belleville 1-6 - Election Day Registration   218
+7  Belleville 2-1 - Election Day Registration   270
+8  Belleville 2-2 - Election Day Registration   191
+9  Belleville 2-3 - Election Day Registration   290
+10 Belleville 2-4 - Election Day Registration   302
+11 Belleville 2-5 - Election Day Registration   314
+12 Belleville 2-6 - Election Day Registration   265
+13 Belleville 2-7 - Election Day Registration   268
+14 Belleville 2-8 - Election Day Registration   411
+15 Belleville 3-1 - Election Day Registration   323
 ```
 
 `read_clarity_results()` downloads and unzips a variety of summary and detailed reports from election websites that use Scytl's Clarity Elections platform. `read_clarity_results()` can also open and tidy extremely detailed precint-level reports using the `detail.xls` reports provided by Clarity Elections websites, creating a list of dataframes containing the data from each worksheet in the detailed report.
