@@ -44,17 +44,10 @@ head(out, 15)
 
 ```R
 url <- "http://www.essexclerk.com/_Content/pdf/ElectionResult/DEM_SOV_2017.pdf"
-out <- read_vertical_results(url, range = c(1:11), colnames = c("Municipality",
-                                                                "Registration",
-                                                                "Ballots Cast",
-                                                                "Turnout (%)",
-                                                                "Philip MURPHY",
-                                                                "William BRENNAN",
-                                                                "John S. WISNIEWSKI",
-                                                                "Jim Johnson",
-                                                                "Mark ZINNA",
-                                                                "Raymond J. LESNIAK",
-                                                                "Write-In "))
+out <- read_vertical_results(url, range = c(1:11), 
+                                  colnames = c("Municipality","Registration","Ballots Cast","Turnout (%)",
+                                               "Philip MURPHY","William BRENNAN","John S. WISNIEWSKI","Jim Johnson",
+                                               "Mark ZINNA","Raymond J. LESNIAK","Write-In"))
 head(out, 15)
                     Municipality  Vote Choice Votes
 1  Belleville 1-1 - Election Day Registration   427
@@ -92,7 +85,8 @@ Clarity Elections websites generally come in one of two formats, Web01 and Web02
 Web01:
 ```R
 url <- "http://results.enr.clarityelections.com/NJ/Gloucester/71871/191307/Web01/en/summary.html"
-out <- read_clarity_results(url, "gloucester.zip", Web01 = TRUE, report = "xls", tidy_detail = TRUE, page_range = 3:5)
+out <- read_clarity_results(url, "gloucester.zip", Web01 = TRUE, report = "xls", 
+                                           tidy_detail = TRUE, page_range = 3:5)
 head(out[[1]], 15)
                     Race Candidate         Vote Type            Locality Votes
 1  Governor (Vote For 1)           Registered Voters  Clayton District 1   845
@@ -115,7 +109,7 @@ head(out[[1]], 15)
 Web02:
 ```R
 url <- "http://results.enr.clarityelections.com/NJ/Essex/72004/191383/reports/detailxls.zip"
-out <- read_clarity_results(url, "essex.zip", tidy_detail = TRUE, page_range = 3:5)```
+out <- read_clarity_results(url, "essex.zip", tidy_detail = TRUE, page_range = 3:5)
 head(out[[1]], 15)
                                        Race Candidate         Vote Type       Locality Votes
 1  For Governor / Lt. Governor (Vote For 1)           Registered Voters Belleville 1-1   901
