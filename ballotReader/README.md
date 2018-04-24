@@ -71,7 +71,17 @@ head(out, 15)
 15 Belleville 3-1 - Election Day Registration   323
 ```
 
-`read_clarity_results()` downloads and unzips a variety of summary and detailed reports from election websites that use Scytl's Clarity Elections platform. `read_clarity_results()` can also open and tidy extremely detailed precint-level reports using the `detail.xls` reports provided by Clarity Elections websites, creating a list of dataframes containing the data from each worksheet in the detailed report.
+`read_clarity_results()` is ballotReader's most powerful function, designed to download and process election reports from local election websites that use Scytl's Clarity Elections platform. `read_clarity_results()` downloads and unzips summary `.csv` reports and detailed `.xls`, `.xml`, and `.txt` reports from Clarity Elections websites, and can also import and tidy detailed precinct-level election results, creating a list of data.frames containing data from each worksheet in the `detail.xls` report.
+
+`read_clarity_results()` contains six important arguments:
+* `file` should be a link to either the website's home page (if Web01) or a direct link to the desired `.zip` file (if Web02). See below for the difference between Web01 and Web02.
+* `destfile` is the directory where the `.zip` file will be downloaded and unzipped. If you are also going to import and tidy the `detail.xls` report, do not set `destfile` outside of the current working directory.
+* `Web01` is FALSE by default. Set `Web01` to TRUE for election sites that use the Web01 format.
+* `report` should only have a value if `Web01` is TRUE. Pick from "csv", "xls", "xml", or "txt".
+* `tidy_detail` is FALSE by default. Set `tidy_detail` to TRUE in order to import and tidy precinct-level election results from the `detail.xls` report. Be aware that this part of the function can take a *long* time to run for large reports with many elections.
+* `page_range` should only have a value if `tidy_detail` is TRUE. Set `page_range` to a numeric vector from 3 to n (i.e. `c(3:n)`) to only import and tidy a subset of the `detail.xls` report. Users may want to run `read_clarity_results()` with `tidy_detail` set to FALSE at first in order to determine how many pages to import.
+
+Clarity Elections websites generally come in one of two formats, Web01 and Web02. The site format is included in the URL and can also be determined by the site's formatting (see ). 
 
 ```R
 Example, with pictures to illustrate Clarity Elections platform
