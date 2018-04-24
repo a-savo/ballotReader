@@ -162,6 +162,7 @@ head(no_totals)
 ### Todo
 
 * Add tests
+* Add more helper functions if relevant
 * Construct a read function for two-column summary reports [(example)](http://www.camdencounty.com/wp-content/uploads/files/2016%20CamCo%20General%20Election%20Canvasser.pdf)
 * `read_results()` should be able to create a list of elections for documents that contain multiple elections, as `return_clarity_results()` does
 * `read_vertical_results()` should be able to handle a second non-vote column
