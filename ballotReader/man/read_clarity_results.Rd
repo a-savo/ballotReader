@@ -4,11 +4,11 @@
 \alias{read_clarity_results}
 \title{read_clarity_results}
 \usage{
-read_clarity_results(file, destfile, Web01 = FALSE, report = NULL,
+read_clarity_results(url, destfile, Web01 = FALSE, report = NULL,
   tidy_detail = FALSE, page_range = NULL)
 }
 \arguments{
-\item{file}{The URL to a zipped report on a Clarity Elections website, or the
+\item{url}{The URL to a zipped report on a Clarity Elections website, or the
 homepage of a Web01 Clarity site.}
 
 \item{destfile}{A path and filename to save the .zip file to.}

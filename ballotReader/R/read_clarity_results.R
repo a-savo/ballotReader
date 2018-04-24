@@ -49,8 +49,7 @@ read_clarity_results <- function(url, destfile, Web01 = FALSE, report = NULL, ti
   `%>%` <- magrittr::`%>%`
 
   if (tidy_detail == TRUE) {
-    message("This function can take a while, especially
-            if you're importing the entire report.")
+    message("This function can take a while, especially if you're importing the entire report.")
     message("Please be patient!")
     xls <- xml2::read_html("detail.xls")
     sheetnumber <- length(rvest::html_text(rvest::html_nodes(xls,

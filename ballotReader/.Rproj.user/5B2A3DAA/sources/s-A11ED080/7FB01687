@@ -7,13 +7,13 @@
     "folds" : "",
     "hash" : "0",
     "id" : "7FB01687",
-    "lastKnownWriteTime" : 1524594445,
-    "last_content_update" : 1524594445723,
+    "lastKnownWriteTime" : 1524597043,
+    "last_content_update" : 1524597043429,
     "path" : "G:/My Drive/Y3/S2/Political Programming/github/govt496-project/ballotReader/R/read_clarity_results.R",
     "project_path" : "R/read_clarity_results.R",
     "properties" : {
-        "cursorPosition" : "55,26",
-        "scrollLine" : "35"
+        "cursorPosition" : "103,18",
+        "scrollLine" : "88"
     },
     "relative_order" : 4,
     "source_on_save" : false,
