@@ -86,6 +86,32 @@ head(out, 15)
 
 Clarity Elections websites generally come in one of two formats, Web01 and Web02. The site format is included in the URL and can also be determined by the site's formatting. Web01 formats (left, Gloucester County, NJ) do not provide direct links to `.zip` files, while Web02 formats (right, Essex County, NJ) do provide direct links, highlighted in the bottom right. Set up `read_clarity_results()` appropriately for which site format you are dealing with.
 
+Web01:
 ```R
-Example, with pictures to illustrate Clarity Elections platform
+Example to come
 ```
+
+Web02"
+```R
+url <- "http://results.enr.clarityelections.com/NJ/Essex/72004/191383/reports/detailxls.zip"
+out <- read_clarity_results(url, "essex.zip", tidy_detail = TRUE, page_range = 3:5)```
+head(out[[1]], 15)
+                                       Race Candidate         Vote Type       Locality Votes
+1  For Governor / Lt. Governor (Vote For 1)           Registered Voters Belleville 1-1   901
+2  For Governor / Lt. Governor (Vote For 1)                       Total Belleville 1-1   224
+3  For Governor / Lt. Governor (Vote For 1)           Registered Voters Belleville 1-2   988
+4  For Governor / Lt. Governor (Vote For 1)                       Total Belleville 1-2   264
+5  For Governor / Lt. Governor (Vote For 1)           Registered Voters Belleville 1-3   816
+6  For Governor / Lt. Governor (Vote For 1)                       Total Belleville 1-3   207
+7  For Governor / Lt. Governor (Vote For 1)           Registered Voters Belleville 1-4   922
+8  For Governor / Lt. Governor (Vote For 1)                       Total Belleville 1-4   279
+9  For Governor / Lt. Governor (Vote For 1)           Registered Voters Belleville 1-5   845
+10 For Governor / Lt. Governor (Vote For 1)                       Total Belleville 1-5   214
+11 For Governor / Lt. Governor (Vote For 1)           Registered Voters Belleville 1-6   610
+12 For Governor / Lt. Governor (Vote For 1)                       Total Belleville 1-6   174
+13 For Governor / Lt. Governor (Vote For 1)           Registered Voters Belleville 2-1   662
+14 For Governor / Lt. Governor (Vote For 1)                       Total Belleville 2-1   179
+15 For Governor / Lt. Governor (Vote For 1)           Registered Voters Belleville 2-2   528
+```
+
+
