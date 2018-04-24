@@ -86,6 +86,54 @@ head(out, 15)
 
 Clarity Elections websites generally come in one of two formats, Web01 and Web02. The site format is included in the URL and can also be determined by the site's formatting. Web01 formats (left, Gloucester County, NJ) do not provide direct links to `.zip` files, while Web02 formats (right, Essex County, NJ) do provide direct links, highlighted in the bottom right. Set up `read_clarity_results()` appropriately for which site format you are dealing with.
 
+Web01:
 ```R
-Example, with pictures to illustrate Clarity Elections platform
+url <- "http://results.enr.clarityelections.com/NJ/Gloucester/71871/191307/Web01/en/summary.html"
+out <- read_clarity_results(url, "gloucester.zip", Web01 = TRUE, report = "xls", tidy_detail = TRUE, page_range = 3:5)
+head(out[[1]], 15)
+                    Race Candidate         Vote Type            Locality Votes
+1  Governor (Vote For 1)           Registered Voters  Clayton District 1   845
+2  Governor (Vote For 1)                       Total  Clayton District 1   290
+3  Governor (Vote For 1)           Registered Voters  Clayton District 2   819
+4  Governor (Vote For 1)                       Total  Clayton District 2   232
+5  Governor (Vote For 1)           Registered Voters  Clayton District 3  1183
+6  Governor (Vote For 1)                       Total  Clayton District 3   386
+7  Governor (Vote For 1)           Registered Voters  Clayton District 4  1066
+8  Governor (Vote For 1)                       Total  Clayton District 4   315
+9  Governor (Vote For 1)           Registered Voters  Clayton District 5   750
+10 Governor (Vote For 1)                       Total  Clayton District 5   197
+11 Governor (Vote For 1)           Registered Voters  Clayton District 6  1017
+12 Governor (Vote For 1)                       Total  Clayton District 6   357
+13 Governor (Vote For 1)           Registered Voters Deptford District 1   956
+14 Governor (Vote For 1)                       Total Deptford District 1   302
+15 Governor (Vote For 1)           Registered Voters Deptford District 2  1064
 ```
+
+Web02:
+```R
+url <- "http://results.enr.clarityelections.com/NJ/Essex/72004/191383/reports/detailxls.zip"
+out <- read_clarity_results(url, "essex.zip", tidy_detail = TRUE, page_range = 3:5)```
+head(out[[1]], 15)
+                                       Race Candidate         Vote Type       Locality Votes
+1  For Governor / Lt. Governor (Vote For 1)           Registered Voters Belleville 1-1   901
+2  For Governor / Lt. Governor (Vote For 1)                       Total Belleville 1-1   224
+3  For Governor / Lt. Governor (Vote For 1)           Registered Voters Belleville 1-2   988
+4  For Governor / Lt. Governor (Vote For 1)                       Total Belleville 1-2   264
+5  For Governor / Lt. Governor (Vote For 1)           Registered Voters Belleville 1-3   816
+6  For Governor / Lt. Governor (Vote For 1)                       Total Belleville 1-3   207
+7  For Governor / Lt. Governor (Vote For 1)           Registered Voters Belleville 1-4   922
+8  For Governor / Lt. Governor (Vote For 1)                       Total Belleville 1-4   279
+9  For Governor / Lt. Governor (Vote For 1)           Registered Voters Belleville 1-5   845
+10 For Governor / Lt. Governor (Vote For 1)                       Total Belleville 1-5   214
+11 For Governor / Lt. Governor (Vote For 1)           Registered Voters Belleville 1-6   610
+12 For Governor / Lt. Governor (Vote For 1)                       Total Belleville 1-6   174
+13 For Governor / Lt. Governor (Vote For 1)           Registered Voters Belleville 2-1   662
+14 For Governor / Lt. Governor (Vote For 1)                       Total Belleville 2-1   179
+15 For Governor / Lt. Governor (Vote For 1)           Registered Voters Belleville 2-2   528
+```
+
+## Notes
+
+* If you find a bug or have ideas for improvements, feel free to shoot me an email at alyssa.g.savo@gmail.com
+* You can also modify the functions in this package to use on other formats where needed
+* License: GPL-3
