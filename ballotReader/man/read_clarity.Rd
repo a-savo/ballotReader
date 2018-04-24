@@ -4,17 +4,29 @@
 \alias{read_clarity}
 \title{read_clarity}
 \usage{
-read_clarity(url, destfile, Web01 = FALSE, report = NULL)
+read_clarity(url, destfile, Web01 = FALSE, report = NULL,
+  tidy_detail = FALSE, page_range = NULL)
 }
 \arguments{
 \item{destfile}{A path and filename to save the .zip file to.}
 
-\item{Web01}{Clarity Elections sites that use Web01 formatting, which include
+\item{Web01}{FALSE by default. Clarity Elections sites that use Web01 formatting, which include
 Web01 in the URL, may not include direct links to .zip reports. In this case,
 set `Web01` to TRUE and the function will attempt to construct a link to the report.}
 
-\item{report}{This should be NULL unless Web01 is TRUE. Choose "csv" for a summary
-report or "xls", "xlm", or "txt" for detailed reports in those formats.}
+\item{report}{Choose "csv" for a summary report or "xls", "xlm", or "txt" for
+detailed local-level election results in those formats.}
+
+\item{tidy_detail}{FALSE by default. Set to TRUE to generate a list of tidy dataframes
+containing local-level election results using the detail.xls report available on
+Clarity Elections websites. It's recommended to set the page range (see below),
+as the tidying process can take a very long time for reports containing a large
+number of election results.}
+
+\item{page_range}{A numeric vector containing the range of worksheets to tidy from
+the detail.xls file. This vector must only contain values greater than 3
+(i.e. 3:n). You may want to run read_clarity once with tidy_detail = FALSE and
+open detail.xls in another program in order to identify the worksheets of interest.}
 
 \item{file}{The URL to a zipped report on a Clarity Elections website, or the
 homepage of a Web01 Clarity site.}
@@ -26,7 +38,9 @@ Downloads election results using the Clarity Elections platform.
 Automatically downloads and unzips election reports from elections websites that
 use Scytl's Clarity Elections platform. Users can either provide a link directly
 to the .zip file or, for Web01 Clarity sites (noted in the website URL), link
-to the home page and specify the desired report.
+to the home page and specify the desired report. This function can also generate
+a list of tidy dataframes containing local election results based on Clarity
+Elections detail reports.
 }
 \author{
 Alyssa Savo

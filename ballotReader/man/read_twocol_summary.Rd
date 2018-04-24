@@ -15,7 +15,8 @@ Imports and tidies election results data from two-column summary reports.
 }
 \details{
 Downloads and tidies .pdf files containing election results in a standardized
-two-column summary format.
+two-column summary format - for an example, see http://www.passaiccountynj.org/ArchiveCenter/ViewFile/Item/972.
+Be warned that this function is pretty unreliable! Further bugtesting to come.
 }
 \author{
 Alyssa Savo
