@@ -161,6 +161,7 @@ head(no_totals)
 
 ### Todo
 
+* Add tests
 * `read_results()` should be able to create a list of elections for documents that contain multiple elections, as `return_clarity_results()` does
 * `read_vertical_results()` should be able to handle a second non-vote column
 * `read_vertical_results()` should automatically retrieve and build column names
