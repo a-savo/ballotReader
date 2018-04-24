@@ -1,6 +1,6 @@
 Package: ballotReader
-Type: Imports Municipal Election Results in a Variety of Formats
-Title: Reads
+Type: Package
+Title: Imports Local Election Results in a Variety of Formats
 Version: 0.1.0
 Author: Alyssa Savo
 Maintainer: Alyssa Savo <alyssa.g.savo@gmail.com>

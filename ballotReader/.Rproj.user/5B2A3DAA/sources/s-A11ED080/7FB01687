@@ -5,17 +5,17 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "1803074713",
+    "hash" : "0",
     "id" : "7FB01687",
-    "lastKnownWriteTime" : 1524551144,
-    "last_content_update" : 1524551144,
-    "path" : "G:/My Drive/Y3/S2/Political Programming/github/ballotReader/ballotReader/R/read_clarity_results.R",
+    "lastKnownWriteTime" : 1524594445,
+    "last_content_update" : 1524594445723,
+    "path" : "G:/My Drive/Y3/S2/Political Programming/github/govt496-project/ballotReader/R/read_clarity_results.R",
     "project_path" : "R/read_clarity_results.R",
     "properties" : {
-        "cursorPosition" : "27,85",
-        "scrollLine" : "88"
+        "cursorPosition" : "55,26",
+        "scrollLine" : "35"
     },
-    "relative_order" : 5,
+    "relative_order" : 4,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "r_source"

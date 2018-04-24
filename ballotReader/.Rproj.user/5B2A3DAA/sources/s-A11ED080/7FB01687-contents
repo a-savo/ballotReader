@@ -11,7 +11,7 @@
 #'
 #' @author Alyssa Savo
 #'
-#' @param file The URL to a zipped report on a Clarity Elections website, or the
+#' @param url The URL to a zipped report on a Clarity Elections website, or the
 #' homepage of a Web01 Clarity site.
 #' @param destfile A path and filename to save the .zip file to.
 #' @param Web01  FALSE by default. Clarity Elections sites that use Web01 formatting, which include
@@ -32,10 +32,10 @@
 #' @export
 #'
 
-read_clarity_results <- function(file, destfile, Web01 = FALSE, report = NULL, tidy_detail = FALSE, page_range = NULL) {
+read_clarity_results <- function(url, destfile, Web01 = FALSE, report = NULL, tidy_detail = FALSE, page_range = NULL) {
   if (Web01 == TRUE) {
-    ID <- stringr::str_extract(file,"[A-Z][A-Z]/[A-Za-z]+/[0-9]+/[0-9]+")
-    file <- paste("http://results.enr.clarityelections.com/",ID,
+    ID <- stringr::str_extract(url,"[A-Z][A-Z]/[A-Za-z]+/[0-9]+/[0-9]+")
+    url <- paste("http://results.enr.clarityelections.com/",ID,
                  switch(report,
                         csv = "/reports/summary.zip",
                         xls = "/reports/detailxls.zip",
@@ -43,7 +43,7 @@ read_clarity_results <- function(file, destfile, Web01 = FALSE, report = NULL, t
                         xml = "/reports/detailxml.zip"), sep = '')
   }
 
-  download.file(file, destfile)
+  download.file(url, destfile)
   unzip(destfile)
 
   `%>%` <- magrittr::`%>%`
