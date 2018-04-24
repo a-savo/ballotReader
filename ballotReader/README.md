@@ -10,7 +10,8 @@ Input and output files from the following examples are saved in `/data` where re
 
 `read_results()` is the most basic ballotReader function, designed to import and tidy tables from `.pdf` files which are already well formatted. For ballotReader's purposes, a table is well formatted if localities (counties, cities, etc.) are listed in the leftmost column, candidate vote totals are listed in each subsequent column, and none of the table text is formatted vertically. For example, the following `.pdf` from the New Jersey Division of Elections website is perfectly formatted for `read_results()`:
 
-[![1st District General Election Results: House of Representatives](https://i.imgur.com/thLSu25.png)](https://i.imgur.com/thLSu25.png)
+<img src = "https://i.imgur.com/thLSu25.png" alt = "1st District General Election Results: House of Representatives" width = "700">
+
 
 ```R
 url <- "http://www.njelections.org/2016-results/2016-municipality-hor-district1.pdf"
@@ -39,21 +40,21 @@ head(out, 15)
 
 `read_vertical_results()` is designed to import and tidy otherwise well-formatted .pdf tables where column names are formatted vertically for a single race of interest. Because the `tabulizer` package struggles to correctly interpret vertically-oriented text, the column names must be provided manually. The page range must also be specified for the race of interest. `read_vertical_results()` is designed to import results from `.pdf` files like the following example from the Essex County Clerk's Office in New Jersey:
 
-[![2017 Official Primary Election Results - Democratic for Governor](https://i.imgur.com/v0VD0dA.png)](https://i.imgur.com/v0VD0dA.png)
+<img src = "https://i.imgur.com/v0VD0dA.png" alt = "2017 Official Primary Election Results - Democratic for Governor" width = "700">
 
 ```R
 url <- "http://www.essexclerk.com/_Content/pdf/ElectionResult/DEM_SOV_2017.pdf"
 out <- read_vertical_results(url, range = c(1:11), colnames = c("Municipality",
-                                          "Registration",
-                                          "Ballots Cast",
-                                          "Turnout (%)",
-                                          "Philip MURPHY",
-                                          "William BRENNAN",
-                                          "John S. WISNIEWSKI",
-                                          "Jim Johnson",
-                                          "Mark ZINNA",
-                                          "Raymond J. LESNIAK",
-                                          "Write-In "))
+                                                                "Registration",
+                                                                "Ballots Cast",
+                                                                "Turnout (%)",
+                                                                "Philip MURPHY",
+                                                                "William BRENNAN",
+                                                                "John S. WISNIEWSKI",
+                                                                "Jim Johnson",
+                                                                "Mark ZINNA",
+                                                                "Raymond J. LESNIAK",
+                                                                "Write-In "))
 head(out, 15)
                     Municipality  Vote Choice Votes
 1  Belleville 1-1 - Election Day Registration   427
@@ -83,7 +84,7 @@ head(out, 15)
 * `tidy_detail` is FALSE by default. Set `tidy_detail` to TRUE in order to import and tidy precinct-level election results from the `detail.xls` report. Be aware that this part of the function can take a *long* time to run for large reports with many elections.
 * `page_range` should only have a value if `tidy_detail` is TRUE. Set `page_range` to a numeric vector from 3 to n (i.e. `c(3:n)`) to only import and tidy a subset of the `detail.xls` report. Users may want to run `read_clarity_results()` with `tidy_detail` set to FALSE at first in order to determine how many pages to import.
 
-[![Web01: Gloucester County, left        Web02: Essex County, right](https://i.imgur.com/BPFuOJS.jpg)](https://i.imgur.com/BPFuOJS.jpg)
+<img src = "https://i.imgur.com/BPFuOJS.jpg" alt = "Web01: Gloucester County, left        Web02: Essex County, right" width = "700">
 
 
 Clarity Elections websites generally come in one of two formats, Web01 and Web02. The site format is included in the URL and can also be determined by the site's formatting. Web01 formats (left, Gloucester County, NJ) do not provide direct links to `.zip` files, while Web02 formats (right, Essex County, NJ) do provide direct links, highlighted in the bottom right. Set up `read_clarity_results()` appropriately for which site format you are dealing with.
