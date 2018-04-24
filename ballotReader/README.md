@@ -132,7 +132,27 @@ head(out[[1]], 15)
 `get_totals()` and `drop_totals()` are helper functions that filter a data.frame to either contain or drop any rows which contain vote totals. This can be useful depending on which subset of data the user is interested in.
 
 ```R
-An example
+essex_gov_17 <- read.csv("data/essex_gov_17.csv")
+totals <- get_totals(essex_gov_17)
+no_totals <- drop_totals(essex_gov_17)
+
+head(totals)
+                                      Race Candidate Vote.Type       Locality Votes
+1 For Governor / Lt. Governor (Vote For 1)               Total Belleville 1-1   224
+2 For Governor / Lt. Governor (Vote For 1)               Total Belleville 1-2   264
+3 For Governor / Lt. Governor (Vote For 1)               Total Belleville 1-3   207
+4 For Governor / Lt. Governor (Vote For 1)               Total Belleville 1-4   279
+5 For Governor / Lt. Governor (Vote For 1)               Total Belleville 1-5   214
+6 For Governor / Lt. Governor (Vote For 1)               Total Belleville 1-6   174
+
+head(no_totals)
+                                      Race Candidate         Vote.Type       Locality Votes
+1 For Governor / Lt. Governor (Vote For 1)           Registered Voters Belleville 1-1   901
+2 For Governor / Lt. Governor (Vote For 1)           Registered Voters Belleville 1-2   988
+3 For Governor / Lt. Governor (Vote For 1)           Registered Voters Belleville 1-3   816
+4 For Governor / Lt. Governor (Vote For 1)           Registered Voters Belleville 1-4   922
+5 For Governor / Lt. Governor (Vote For 1)           Registered Voters Belleville 1-5   845
+6 For Governor / Lt. Governor (Vote For 1)           Registered Voters Belleville 1-6   610
 ```
 
 ## Notes
