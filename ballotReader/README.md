@@ -160,3 +160,10 @@ head(no_totals)
 * If you find a bug or have ideas for improvements, feel free to shoot me an email at alyssa.g.savo@gmail.com
 * You can also modify the functions in this package to use on other formats where needed
 * License: GPL-3
+
+### Todo
+
+* `read_results()` should be able to create a list of elections for documents that contain multiple elections, as `return_clarity_results()` does
+* `read_vertical_results()` should be able to handle a second non-vote column
+* `read_vertical_results()` should automatically retrieve and build column names
+* `return_clarity_results()` should not need the Web01 argument set explicitly
