@@ -4,19 +4,25 @@
 \alias{read_results}
 \title{read_results}
 \usage{
-read_results(file)
+read_results(file, merged_header = FALSE)
 }
 \arguments{
 \item{file}{A URL or path to a .pdf file.}
+
+\item{merged_header}{FALSE by default. If the table has merged headers
+grouping the candidates (by race, etc.) in the first row, setting this to TRUE
+will drop that row.}
 }
 \description{
 Imports and tidies election results from simply-formatted .pdf files.
 }
 \details{
 This function should help read and tidy election results from simple and well-
-formatted .pdf files, where localities (county, city, voting district, etc.)
-are listed in the first column and candidate vote totals are listed in all
-subsequent columns.
+formatted .pdf table, where localities (county, city, voting district, etc.)
+are listed in the first column, candidate vote totals are listed in all
+subsequent columns, and vertical text is not used for column names or other parts
+of the table. See read_vertical_results for well-formatted results where column
+names are formatted vertically.
 }
 \author{
 Alyssa Savo
