@@ -46,11 +46,12 @@ read_clarity <- function(url, destfile, Web01 = FALSE, report = NULL, tidy_detai
       cols <- strsplit(rows[i], "(?<=[a-z]{2})(?=[A-Z])", perl = TRUE)[[1]]
       cols_votes <- cols[2:length(cols)]
       cols_count <- length(cols_votes)
+      candidate_cols_count <- cols_count - 2
 
       everything <- html_text(html_nodes(xls, xpath = paste("//worksheet[",i,"]/table/row/cell", sep = '')))
       vote_num <- na.omit(str_match(everything, "^[0-9]+"))[,1]
       cell_count <- length(vote_num)
-      row_count <- cell_count/cols_count
+      row_count <- (cell_count/cols_count) + 1
 
       results <- matrix(data = c(cols_votes, vote_num),
                         nrow = row_count, ncol = cols_count,
@@ -58,6 +59,32 @@ read_clarity <- function(url, destfile, Web01 = FALSE, report = NULL, tidy_detai
 
       # Take out the column names and vote counts
       remaining <- setdiff(setdiff(everything, vote_num), cols_votes)
+      county_id <- which(remaining %in% cols)
+      counties <- remaining[county_id:length(remaining)]
+
+      remaining <- setdiff(remaining, counties)
+      title <- remaining[1]
+      remaining <- remaining[-1] %>%
+        fill_na() %>%
+        na.omit() %>%
+        as.character()
+      candidates <- length(remaining)
+      cols_per_candidate <- candidate_cols_count/candidates
+      candidate_rows <- rep(remaining,
+                            length.out = candidate_cols_count,
+                            each = cols_per_candidate)
+
+      df <- as.data.frame(t(table))
+      names(df) <- counties
+      df["Candidate"] <- ''
+      df[2:(nrow(df)-1), "Candidate"] <- candidate_rows
+      df <- df %>%
+        select(Candidate, everything()) %>%
+        rename("Vote Type" = !!names(.[2])) %>%
+        gather(3:ncol(df), key = "Locality", value = "Votes") %>%
+        arrange(Candidate) %>%
+        mutate(Race = title) %>%
+        select(Race, everything())
 
     }
   }
