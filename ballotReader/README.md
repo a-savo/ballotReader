@@ -88,10 +88,28 @@ Clarity Elections websites generally come in one of two formats, Web01 and Web02
 
 Web01:
 ```R
-Example to come
+url <- "http://results.enr.clarityelections.com/NJ/Gloucester/71871/191307/Web01/en/summary.html"
+out <- read_clarity_results(url, "gloucester.zip", Web01 = TRUE, report = "xls", tidy_detail = TRUE, page_range = 3:5)
+head(out[[1]], 15)
+                    Race Candidate         Vote Type            Locality Votes
+1  Governor (Vote For 1)           Registered Voters  Clayton District 1   845
+2  Governor (Vote For 1)                       Total  Clayton District 1   290
+3  Governor (Vote For 1)           Registered Voters  Clayton District 2   819
+4  Governor (Vote For 1)                       Total  Clayton District 2   232
+5  Governor (Vote For 1)           Registered Voters  Clayton District 3  1183
+6  Governor (Vote For 1)                       Total  Clayton District 3   386
+7  Governor (Vote For 1)           Registered Voters  Clayton District 4  1066
+8  Governor (Vote For 1)                       Total  Clayton District 4   315
+9  Governor (Vote For 1)           Registered Voters  Clayton District 5   750
+10 Governor (Vote For 1)                       Total  Clayton District 5   197
+11 Governor (Vote For 1)           Registered Voters  Clayton District 6  1017
+12 Governor (Vote For 1)                       Total  Clayton District 6   357
+13 Governor (Vote For 1)           Registered Voters Deptford District 1   956
+14 Governor (Vote For 1)                       Total Deptford District 1   302
+15 Governor (Vote For 1)           Registered Voters Deptford District 2  1064
 ```
 
-Web02"
+Web02:
 ```R
 url <- "http://results.enr.clarityelections.com/NJ/Essex/72004/191383/reports/detailxls.zip"
 out <- read_clarity_results(url, "essex.zip", tidy_detail = TRUE, page_range = 3:5)```
@@ -114,4 +132,8 @@ head(out[[1]], 15)
 15 For Governor / Lt. Governor (Vote For 1)           Registered Voters Belleville 2-2   528
 ```
 
+## Notes
 
+* If you find a bug or have ideas for improvements, feel free to shoot me an email at alyssa.g.savo@gmail.com
+* You can also modify the functions in this package to use on other formats where needed
+* License: GPL-3
