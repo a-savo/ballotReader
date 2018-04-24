@@ -46,8 +46,8 @@ head(out, 15)
 url <- "http://www.essexclerk.com/_Content/pdf/ElectionResult/DEM_SOV_2017.pdf"
 out <- read_vertical_results(url, range = c(1:11), 
                                   colnames = c("Municipality","Registration","Ballots Cast","Turnout (%)",
-                                               "Philip MURPHY","William BRENNAN","John S. WISNIEWSKI","Jim Johnson",
-                                               "Mark ZINNA","Raymond J. LESNIAK","Write-In"))
+                                               "Philip MURPHY","William BRENNAN","John S. WISNIEWSKI",
+                                               "Jim Johnson","Mark ZINNA","Raymond J. LESNIAK","Write-In"))
 head(out, 15)
                     Municipality  Vote Choice Votes
 1  Belleville 1-1 - Election Day Registration   427
