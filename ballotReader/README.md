@@ -69,24 +69,22 @@ head(out, 15)
 
 `read_clarity_results()` is ballotReader's most powerful function, designed to download and process election reports from local election websites that use Scytl's Clarity Elections platform. `read_clarity_results()` downloads and unzips summary `.csv` reports and detailed `.xls`, `.xml`, and `.txt` reports from Clarity Elections websites, and can also import and tidy detailed precinct-level election results, creating a list of data.frames containing data from each worksheet in the `detail.xls` report.
 
-`read_clarity_results()` contains six important arguments:
+`read_clarity_results()` contains five important arguments:
 * `file` should be a link to either the website's home page (if Web01) or a direct link to the desired `.zip` file (if Web02). See below for the difference between Web01 and Web02.
 * `destfile` is the directory where the `.zip` file will be downloaded and unzipped. If you are also going to import and tidy the `detail.xls` report, do not set `destfile` outside of the current working directory.
-* `Web01` is FALSE by default. Set `Web01` to TRUE for election sites that use the Web01 format.
-* `report` should only have a value if `Web01` is TRUE. Pick from "csv", "xls", "xml", or "txt".
+* `report` should only have a value for Web01 sites. Pick from "csv", "xls", "xml", or "txt".
 * `tidy_detail` is FALSE by default. Set `tidy_detail` to TRUE in order to import and tidy precinct-level election results from the `detail.xls` report. Be aware that this part of the function can take a *long* time to run for large reports with many elections.
 * `page_range` should only have a value if `tidy_detail` is TRUE. Set `page_range` to a numeric vector from 3 to n (i.e. `c(3:n)`) to only import and tidy a subset of the `detail.xls` report. Users may want to run `read_clarity_results()` with `tidy_detail` set to FALSE at first in order to determine how many pages to import.
 
 <img src = "https://i.imgur.com/BPFuOJS.jpg" alt = "Web01: Gloucester County, left        Web02: Essex County, right" width = "700">
 
 
-Clarity Elections websites generally come in one of two formats, Web01 and Web02. The site format is included in the URL and can also be determined by the site's formatting. Web01 formats (left, Gloucester County, NJ) do not provide direct links to `.zip` files, while Web02 formats (right, Essex County, NJ) do provide direct links, highlighted in the bottom right. Set up `read_clarity_results()` appropriately for which site format you are dealing with.
+Clarity Elections websites generally come in one of two formats, Web01 and Web02. The site format is included in the URL and can also be determined by the site's formatting. Web01 formats (left, Gloucester County, NJ) do not provide direct links to `.zip` files, while Web02 formats (right, Essex County, NJ) do provide direct links, highlighted in the bottom right. Use the home page for Web01 sites and the direct link for Web02 sites.
 
 Web01:
 ```R
 url <- "http://results.enr.clarityelections.com/NJ/Gloucester/71871/191307/Web01/en/summary.html"
-out <- read_clarity_results(url, "gloucester.zip", Web01 = TRUE, report = "xls", 
-                                           tidy_detail = TRUE, page_range = 3:5)
+out <- read_clarity_results(url, "gloucester.zip", report = "xls", tidy_detail = TRUE, page_range = 3:5)
 head(out[[1]], 15)
                     Race Candidate         Vote Type            Locality Votes
 1  Governor (Vote For 1)           Registered Voters  Clayton District 1   845
@@ -166,4 +164,3 @@ head(no_totals)
 * `read_results()` should be able to create a list of elections for documents that contain multiple elections, as `return_clarity_results()` does
 * `read_vertical_results()` should be able to handle a second non-vote column
 * `read_vertical_results()` should automatically retrieve and build column names
-* `return_clarity_results()` should not need the Web01 argument set explicitly
