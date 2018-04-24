@@ -4,15 +4,18 @@
 \alias{read_clarity_results}
 \title{read_clarity_results}
 \usage{
-read_clarity_results(url, destfile, Web01 = FALSE, report = NULL,
+read_clarity_results(file, destfile, Web01 = FALSE, report = NULL,
   tidy_detail = FALSE, page_range = NULL)
 }
 \arguments{
+\item{file}{The URL to a zipped report on a Clarity Elections website, or the
+homepage of a Web01 Clarity site.}
+
 \item{destfile}{A path and filename to save the .zip file to.}
 
 \item{Web01}{FALSE by default. Clarity Elections sites that use Web01 formatting, which include
 Web01 in the URL, may not include direct links to .zip reports. In this case,
-set `Web01` to TRUE and the function will attempt to construct a link to the report.}
+set Web01 to TRUE and the function will attempt to construct a link to the report.}
 
 \item{report}{Choose "csv" for a summary report or "xls", "xlm", or "txt" for
 detailed local-level election results in those formats.}
@@ -24,12 +27,9 @@ as the tidying process can take a very long time for reports containing a large
 number of election results.}
 
 \item{page_range}{A numeric vector containing the range of worksheets to tidy from
-the detail.xls file. This vector must only contain values greater than 3
+the detail.xls file. This vector must only contain values greater than or equal to 3
 (i.e. 3:n). You may want to run read_clarity_results once with tidy_detail = FALSE and
 open detail.xls in another program in order to identify the worksheets of interest.}
-
-\item{file}{The URL to a zipped report on a Clarity Elections website, or the
-homepage of a Web01 Clarity site.}
 }
 \description{
 Downloads election results using the Clarity Elections platform.

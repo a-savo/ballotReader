@@ -16,7 +16,7 @@
 #' @param destfile A path and filename to save the .zip file to.
 #' @param Web01  FALSE by default. Clarity Elections sites that use Web01 formatting, which include
 #' Web01 in the URL, may not include direct links to .zip reports. In this case,
-#' set `Web01` to TRUE and the function will attempt to construct a link to the report.
+#' set Web01 to TRUE and the function will attempt to construct a link to the report.
 #' @param report Choose "csv" for a summary report or "xls", "xlm", or "txt" for
 #' detailed local-level election results in those formats.
 #' @param tidy_detail FALSE by default. Set to TRUE to generate a list of tidy dataframes
@@ -25,17 +25,17 @@
 #' as the tidying process can take a very long time for reports containing a large
 #' number of election results.
 #' @param page_range A numeric vector containing the range of worksheets to tidy from
-#' the detail.xls file. This vector must only contain values greater than 3
+#' the detail.xls file. This vector must only contain values greater than or equal to 3
 #' (i.e. 3:n). You may want to run read_clarity_results once with tidy_detail = FALSE and
 #' open detail.xls in another program in order to identify the worksheets of interest.
 #'
 #' @export
 #'
 
-read_clarity_results <- function(url, destfile, Web01 = FALSE, report = NULL, tidy_detail = FALSE, page_range = NULL) {
+read_clarity_results <- function(file, destfile, Web01 = FALSE, report = NULL, tidy_detail = FALSE, page_range = NULL) {
   if (Web01 == TRUE) {
-    ID <- stringr::str_extract(url,"[A-Z][A-Z]/[A-Za-z]+/[0-9]+/[0-9]+")
-    url <- paste("http://results.enr.clarityelections.com/",ID,
+    ID <- stringr::str_extract(file,"[A-Z][A-Z]/[A-Za-z]+/[0-9]+/[0-9]+")
+    file <- paste("http://results.enr.clarityelections.com/",ID,
                  switch(report,
                         csv = "/reports/summary.zip",
                         xls = "/reports/detailxls.zip",
@@ -43,7 +43,7 @@ read_clarity_results <- function(url, destfile, Web01 = FALSE, report = NULL, ti
                         xml = "/reports/detailxml.zip"), sep = '')
   }
 
-  download.file(url, destfile)
+  download.file(file, destfile)
   unzip(destfile)
 
   `%>%` <- magrittr::`%>%`

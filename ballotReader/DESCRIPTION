@@ -4,8 +4,11 @@ Title: Reads
 Version: 0.1.0
 Author: Alyssa Savo
 Maintainer: Alyssa Savo <alyssa.g.savo@gmail.com>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: A set of functions that can efficiently import and tidy
+  local election results in a variety of standardized formats, including detailed 
+  precinct reports from the Clarity Elections platform. Each function starts 
+  with "read_" and is designed to handle a specific election return format - see
+  vignette("ballotReader", package = "ballotReader") for more info.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

@@ -5,7 +5,7 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "1253764371",
+    "hash" : "0",
     "id" : "3B0A073A",
     "lastKnownWriteTime" : 1524462172,
     "last_content_update" : 1524462172243,
@@ -13,7 +13,7 @@
     "project_path" : "R/read_vertical_results.R",
     "properties" : {
         "cursorPosition" : "36,0",
-        "scrollLine" : "0",
+        "scrollLine" : "10",
         "tempName" : "Untitled1"
     },
     "relative_order" : 2,
