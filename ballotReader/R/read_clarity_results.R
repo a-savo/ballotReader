@@ -14,11 +14,9 @@
 #' @param url The URL to a zipped report on a Clarity Elections website, or the
 #' homepage of a Web01 Clarity site.
 #' @param destfile A path and filename to save the .zip file to.
-#' @param Web01  FALSE by default. Clarity Elections sites that use Web01 formatting, which include
-#' Web01 in the URL, may not include direct links to .zip reports. In this case,
-#' set Web01 to TRUE and the function will attempt to construct a link to the report.
-#' @param report Choose "csv" for a summary report or "xls", "xlm", or "txt" for
-#' detailed local-level election results in those formats.
+#' @param report For Web01 sites, choose "csv" for a summary report or
+#' "xls", "xlm", or "txt" for detailed local-level election results in those
+#' formats.
 #' @param tidy_detail FALSE by default. Set to TRUE to generate a list of tidy dataframes
 #' containing local-level election results using the detail.xls report available on
 #' Clarity Elections websites. It's recommended to set the page range (see below),
@@ -32,7 +30,8 @@
 #' @export
 #'
 
-read_clarity_results <- function(url, destfile, Web01 = FALSE, report = NULL, tidy_detail = FALSE, page_range = NULL) {
+read_clarity_results <- function(url, destfile, report = NULL, tidy_detail = FALSE, page_range = NULL) {
+  Web01 <- ifelse(grepl("Web01", url),TRUE,FALSE)
   if (Web01 == TRUE) {
     ID <- stringr::str_extract(url,"[A-Z][A-Z]/[A-Za-z]+/[0-9]+/[0-9]+")
     url <- paste("http://results.enr.clarityelections.com/",ID,
