@@ -162,8 +162,9 @@ head(no_totals)
 ### Todo
 
 * Add tests
-* Add more helper functions if relevant
+* Add more helper functions as appropriate
 * Construct a read function for two-column summary reports [(example)](http://www.camdencounty.com/wp-content/uploads/files/2016%20CamCo%20General%20Election%20Canvasser.pdf)
 * `read_results()` should be able to create a list of elections for documents that contain multiple elections, as `return_clarity_results()` does
 * `read_vertical_results()` should be able to handle a second non-vote column
 * `read_vertical_results()` should automatically retrieve and build column names
+* `read_clarity_results()` should have a way to load `detail.xls` if the `.zip` file is saved outside of the current working directory.
