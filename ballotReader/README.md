@@ -2,7 +2,15 @@
 
 **ballotReader** is a set of functions designed to efficiently import and tidy local election results in a variety of standardized formats, including the Clarity Elections reporting platform and common `.pdf` formats. ballotReader is intended to eliminate time spent wrangling election results online, in Microsoft Excel, and in third-party conversion software by processing election data entirely within R, where it can then easily be saved as an analysis-friendly `.csv` file.
 
-Note: In order to use most ballotReader functions, users must first install the [tabulizer](https://github.com/ropensci/tabulizer) package via Github as well as a recent version of Java.
+## Installation
+
+In order to use most ballotReader functions, users must first install rOpenSci's [tabulizer](https://github.com/ropensci/tabulizer) package via Github as well as a recent version of Java.
+
+ballotReader can be installed by running the following command in the R console:
+
+```R
+devtools::install_github("a-savo/govt496/ballotReader")
+```
 
 ## Code Examples
 
