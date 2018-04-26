@@ -41,6 +41,9 @@
 #'
 
 read_clarity_results <- function(url, destfile, report = NULL, tidy_detail = FALSE, page_range = NULL) {
+  `%>%` <- magrittr::`%>%`
+
+  # Determine if Web01, and build url if true
   Web01 <- ifelse(grepl("Web01", url),TRUE,FALSE)
   if (Web01 == TRUE) {
     ID <- stringr::str_extract(url,"[A-Z][A-Z]/[A-Za-z]+/[0-9]+/[0-9]+")
@@ -52,38 +55,51 @@ read_clarity_results <- function(url, destfile, report = NULL, tidy_detail = FAL
                         xml = "/reports/detailxml.zip"), sep = '')
   }
 
+  # Download and unzip report
   download.file(url, destfile)
   unzip(destfile)
-
-  `%>%` <- magrittr::`%>%`
 
   if (tidy_detail == TRUE) {
     message("This function can take a while, especially if you're importing the entire report.")
     message("Please be patient!")
+
+    # Read excel doc as html file
     xls <- xml2::read_html("detail.xls")
+    # Total # of sheets
     sheetnumber <- length(rvest::html_text(rvest::html_nodes(xls,
                                                       xpath = "//worksheet")))
     sheets <- list()
+
+    # Use page_range if set by user
     if (is.null(page_range)) {
       range <- 3:sheetnumber
     } else {
       range <- page_range
     }
+
     for (i in range) {
+
+      # Pull out each row of each worksheet as a string
       rows <- rvest::html_text(rvest::html_nodes(
         xls, xpath = paste("//worksheet[",i,"]/table/row", sep = '')))
 
+      # Find column names
       cols <- strsplit(rows[3], "(?<=[a-z]{2})(?=[A-Z])", perl = TRUE)[[1]]
+      # Find columns with vote totals
       cols_votes <- cols[2:length(cols)]
       cols_count <- length(cols_votes)
+      # Separate out registered voters and total votes
       candidate_cols_count <- cols_count - 2
 
+      # Pull out vector of cell contents
       everything <- rvest::html_text(rvest::html_nodes(
         xls, xpath = paste("//worksheet[",i,"]/table/row/cell", sep = '')))
+      # Pull out votes and use numger of vote cells to determine size of matrix
       vote_num <- na.omit(stringr::str_match(everything, "^[0-9]+"))[,1]
       cell_count <- length(vote_num)
       row_count <- (cell_count/cols_count) + 1
 
+      # Rebuild vote matrix from excel document
       results <- matrix(data = c(cols_votes, vote_num),
                         nrow = row_count, ncol = cols_count,
                         byrow = TRUE)
@@ -92,29 +108,35 @@ read_clarity_results <- function(url, destfile, report = NULL, tidy_detail = FAL
       remaining <- setdiff(setdiff(everything, vote_num), cols_votes)
       county_id <- which(remaining %in% cols)
       counties <- remaining[county_id:length(remaining)]
-
       remaining <- setdiff(remaining, counties)
+
+      # Pull out the title and isolate candidates
       title <- remaining[1]
       remaining <- remaining[-1] %>%
         fill_na() %>%
         na.omit() %>%
         as.character()
+
+      # Generate candidate variable to repeat across vote types
       candidates <- length(remaining)
       cols_per_candidate <- candidate_cols_count/candidates
       candidate_rows <- rep(remaining,
                             length.out = candidate_cols_count,
                             each = cols_per_candidate)
 
+      # Create data.frame of results with candidate variable
       df <- as.data.frame(t(results))
       names(df) <- counties
       df["Candidate"] <- ''
       df[2:(nrow(df)-1), "Candidate"] <- candidate_rows
 
       df <- df %>%
+        # Gather vote totals into one column
         dplyr::select(Candidate, dplyr::everything()) %>%
         dplyr::rename("Vote Type" = !!names(.[2])) %>%
         tidyr::gather(3:ncol(df), key = "Locality", value = "Votes") %>%
         dplyr::arrange(Candidate) %>%
+        # Create race column
         dplyr::mutate(Race = title) %>%
         dplyr::select(Race, dplyr::everything())
 
