@@ -23,6 +23,11 @@ function includes additional parameters to help generate well-formatted
 data.frames for a single race from .pdfs containing election results with
 vertical column headers.
 }
+\examples{
+file <- "data/dem_primary_essex_17.pdf"
+read_vertical_results(file, range = c(1:11), colnames = c("Municipality","Registration","Ballots Cast","Turnout (\%)","Philip MURPHY","William BRENNAN","John S. WISNIEWSKI","Jim Johnson","Mark ZINNA","Raymond J. LESNIAK","Write-In"))
+
+}
 \author{
 Alyssa Savo
 }

@@ -40,6 +40,7 @@ a list of tidy dataframes containing local election results based on Clarity
 Elections detail reports.
 }
 \examples{
+
 # Web01:
 url <- "http://results.enr.clarityelections.com/NJ/Gloucester/71871/191307/Web01/en/summary.html"
 read_clarity_results(url, "gloucester.zip", report = "xls", tidy_detail = TRUE, page_range = 3:5)

@@ -27,6 +27,16 @@
 #' (i.e. 3:n). You may want to run read_clarity_results once with tidy_detail = FALSE and
 #' open detail.xls in another program in order to identify the worksheets of interest.
 #'
+#' @examples
+#' # Web01:
+#' url <- "http://results.enr.clarityelections.com/NJ/Gloucester/71871/191307/Web01/en/summary.html"
+#' read_clarity_results(url, "gloucester.zip", report = "xls", tidy_detail = TRUE, page_range = 3:5)
+#'
+#' # Web02:
+#' url <- "http://results.enr.clarityelections.com/NJ/Essex/72004/191383/reports/detailxls.zip"
+#' read_clarity_results(url, "essex.zip", tidy_detail = TRUE, page_range = 3:5)
+#'
+#'
 #' @export
 #'
 

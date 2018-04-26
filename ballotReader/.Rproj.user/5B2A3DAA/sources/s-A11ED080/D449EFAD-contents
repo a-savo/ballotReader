@@ -9,6 +9,10 @@
 #'
 #' @param df A data.frame
 #'
+#' @examples
+#' essex_gov_17 <- read.csv("data/essex_gov_17.csv")
+#' drop_totals(essex_gov_17)
+#'
 #' @export
 
 get_totals <- function(df) {

@@ -24,11 +24,6 @@ subsequent columns, and vertical text is not used for column names or other part
 of the table. See read_vertical_results for well-formatted results where column
 names are formatted vertically.
 }
-\examples{
-url <- "data/hor_nj01_17.csv"
-read_results(url)
-
-}
 \author{
 Alyssa Savo
 }

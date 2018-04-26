@@ -16,6 +16,11 @@ Drops rows containing totals
 Takes a data.frame and filters it to return rows that do not contain the
 word "total" without paying attention to case.
 }
+\examples{
+essex_gov_17 <- read.csv("data/essex_gov_17.csv")
+drop_totals(essex_gov_17)
+
+}
 \author{
 Alyssa Savo
 }
