@@ -7,13 +7,13 @@
     "folds" : "",
     "hash" : "0",
     "id" : "E01A2AC7",
-    "lastKnownWriteTime" : 1524706853,
-    "last_content_update" : 1524706853163,
+    "lastKnownWriteTime" : 1524707267,
+    "last_content_update" : 1524707267234,
     "path" : "G:/My Drive/Y3/S2/Political Programming/github/govt496-project/ballotReader/R/read_vertical_results.R",
     "project_path" : "R/read_vertical_results.R",
     "properties" : {
-        "cursorPosition" : "16,12",
-        "scrollLine" : "1",
+        "cursorPosition" : "26,0",
+        "scrollLine" : "21",
         "tempName" : "Untitled1"
     },
     "relative_order" : 3,

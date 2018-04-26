@@ -23,15 +23,24 @@
 
 read_vertical_results <- function(file, range, colnames) {
   `%>%` <- magrittr::`%>%`
-  pages <- tabulizer::extract_tables(file, pages = range)
   elex <- list()
+
+  # Extract pdf tables into a list of matrices
+  pages <- tabulizer::extract_tables(file, pages = range)
+
   for (i in 1:length(pages)) {
+    # Convert to data.frame and add column names
     df <- as.data.frame(pages[[i]])
     names(df) <- colnames
+    # Drop final column, which is incorrectly parsed headers
     df <- df[-length(df)]
     elex[[i]] <- df
   }
+
+  # Combine each page from elex list
   all_elex <- as.data.frame(do.call("rbind", elex), stringsAsFactors = FALSE)
+
+  # Gather candidate columns and drop empty rows
   all_elex <- all_elex %>%
     tidyr::gather(key = "Vote Choice", value = "Votes", -1) %>%
     fill_na() %>%
