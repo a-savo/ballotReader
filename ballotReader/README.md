@@ -169,7 +169,6 @@ head(no_totals)
 
 ### Todo
 
-* Add tests
 * Add functionality so that `read_` functions can take in a list of URLs/docs
 * Add more helper functions as appropriate
 * Construct a read function for two-column summary reports [(example)](http://www.camdencounty.com/wp-content/uploads/files/2016%20CamCo%20General%20Election%20Canvasser.pdf)
