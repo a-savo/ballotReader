@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1524860422935.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "7DAD8944",
+    "lastKnownWriteTime" : 1524858694,
+    "last_content_update" : 1524858694,
+    "path" : "G:/My Drive/Y3/S2/Political Programming/github/govt496-project/ballotReader/R/read_vertical_results.R",
+    "project_path" : "R/read_vertical_results.R",
+    "properties" : {
+        "cursorPosition" : "47,13",
+        "scrollLine" : "29",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
