@@ -26,21 +26,21 @@ url <- "http://www.njelections.org/2016-results/2016-municipality-hor-district1.
 out <- read_results(url)
 head(out, 15)
             Subgroup      Municipality                      Candidate  Votes
-1  Burlington County   Maple Shade Twp Donald W. Norcross\rDemocratic  4,025
-2  Burlington County      Palmyra Boro Donald W. Norcross\rDemocratic  1,975
-3   Federal Overseas Burlington Totals Donald W. Norcross\rDemocratic  6,000
-4      Camden County      Audubon Boro Donald W. Norcross\rDemocratic  2,409
+1  Burlington County   Maple Shade Twp Donald W. Norcross\rDemocratic   4025
+2  Burlington County      Palmyra Boro Donald W. Norcross\rDemocratic   1975
+3   Federal Overseas Burlington Totals Donald W. Norcross\rDemocratic   6000
+4      Camden County      Audubon Boro Donald W. Norcross\rDemocratic   2409
 5      Camden County Audubon Park Boro Donald W. Norcross\rDemocratic    288
-6      Camden County   Barrington Boro Donald W. Norcross\rDemocratic  1,733
-7      Camden County     Bellmawr Boro Donald W. Norcross\rDemocratic  2,649
-8      Camden County       Berlin Boro Donald W. Norcross\rDemocratic  1,591
-9      Camden County       Berlin Twp. Donald W. Norcross\rDemocratic  1,293
+6      Camden County   Barrington Boro Donald W. Norcross\rDemocratic   1733
+7      Camden County     Bellmawr Boro Donald W. Norcross\rDemocratic   2649
+8      Camden County       Berlin Boro Donald W. Norcross\rDemocratic   1591
+9      Camden County       Berlin Twp. Donald W. Norcross\rDemocratic   1293
 10     Camden County    Brooklawn Boro Donald W. Norcross\rDemocratic    455
-11     Camden County       Camden City Donald W. Norcross\rDemocratic 16,424
-12     Camden County  Cherry Hill Twp. Donald W. Norcross\rDemocratic 20,655
+11     Camden County       Camden City Donald W. Norcross\rDemocratic  16424
+12     Camden County  Cherry Hill Twp. Donald W. Norcross\rDemocratic  20655
 13     Camden County  Chesilhurst Boro Donald W. Norcross\rDemocratic    476
-14     Camden County    Clementon Boro Donald W. Norcross\rDemocratic  1,126
-15     Camden County Collingswood Boro Donald W. Norcross\rDemocratic  4,581
+14     Camden County    Clementon Boro Donald W. Norcross\rDemocratic   1126
+15     Camden County Collingswood Boro Donald W. Norcross\rDemocratic   4581
 ```
 
 `read_results()` also contains a `merged_header` argument, which allows .pdf tables with merged headers grouping candidates or races together [(example)](http://www.njelections.org/2017-results/2017-general-election-results-gen-assembly-state-senate-district-01.pdf) to be imported.
