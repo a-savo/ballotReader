@@ -133,11 +133,12 @@ read_clarity_results <- function(url, destfile, report = NULL, tidy_detail = FAL
       df <- df %>%
         # Gather vote totals into one column
         dplyr::select(Candidate, dplyr::everything()) %>%
-        dplyr::rename("Vote Type" = !!names(.[2])) %>%
+        dplyr::rename("Vote_Type" = !!names(.[2])) %>%
         tidyr::gather(3:ncol(df), key = "Locality", value = "Votes") %>%
         dplyr::arrange(Candidate) %>%
         # Create race column
         dplyr::mutate(Race = title) %>%
+        dplyr::mutate(Votes = as.numeric(Votes)) %>%
         dplyr::select(Race, dplyr::everything())
 
       sheets[[(i-2)]] <- df
