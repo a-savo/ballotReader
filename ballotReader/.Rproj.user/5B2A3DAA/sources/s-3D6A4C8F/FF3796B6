@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1524865306686.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "FF3796B6",
+    "lastKnownWriteTime" : 1525043004,
+    "last_content_update" : 1525043004075,
+    "path" : "G:/My Drive/Y3/S2/Political Programming/github/govt496-project/ballotReader/R/read_clarity_results.R",
+    "project_path" : "R/read_clarity_results.R",
+    "properties" : {
+        "cursorPosition" : "40,71",
+        "scrollLine" : "19"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
