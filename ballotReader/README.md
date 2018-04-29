@@ -77,7 +77,7 @@ head(out, 15)
 
 `read_clarity_results()` is ballotReader's most powerful function, designed to download and process election reports from local election websites that use Scytl's Clarity Elections platform. `read_clarity_results()` downloads and unzips summary `.csv` reports and detailed `.xls`, `.xml`, and `.txt` reports from Clarity Elections websites, and can also import and tidy detailed precinct-level election results, creating a list of data.frames containing data from each worksheet in the `detail.xls` report.
 
-`read_clarity_results()` contains five important arguments:
+`read_clarity_results()` contains six important arguments:
 * `file` should be a link to either the website's home page (if Web01) or a direct link to the desired `.zip` file (if Web02). See below for the difference between Web01 and Web02.
 * `directory` is the directory where the report will be unzipped and loaded from.
 * `filename` is the file name for the report, including the file extension (i.e. `.csv`, `.xls`, `.xml`, `.txt`). This is set to NULL by default, but it is recommended to use unique names for each report if you plan to download multiple reports, as Clarity Elections websites use the same default report names for each site.
