@@ -171,9 +171,10 @@ head(no_totals)
 ### Todo
 
 * Add functionality so that `read_` functions can take in a list of URLs/docs
+* Develop `separate_party()` to separate political party from the candidate column where appropriate
 * Add more helper functions as appropriate
-** Develop `separate_party()` to separate political party from the candidate column where appropriate
-* Construct a read function for two-column summary reports [(example)](http://www.camdencounty.com/wp-content/uploads/files/2016%20CamCo%20General%20Election%20Canvasser.pdf)
 * `read_results()` should be able to create a list of elections for documents that contain multiple elections, as `return_clarity_results()` does
 * `read_vertical_results()` should be able to handle a second non-vote column
 * `read_vertical_results()` should automatically retrieve and build column names
+* Tweak `read_clarity_results()` to decrease load time
+* Construct a read function for two-column summary reports [(example)](http://www.camdencounty.com/wp-content/uploads/files/2016%20CamCo%20General%20Election%20Canvasser.pdf)
