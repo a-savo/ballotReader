@@ -14,7 +14,7 @@ In order to use most ballotReader functions, users must first install rOpenSci's
 
 ## Code Examples
 
-Input and output files from the following examples are saved in `/data` where relevant.
+Input and output files from the following examples are saved in `/data`.
 
 `read_results()` is the most basic ballotReader function, designed to import and tidy tables from `.pdf` files which are already well formatted. For ballotReader's purposes, a table is well formatted if localities (counties, cities, etc.) are listed in the leftmost column, candidate vote totals are listed in each subsequent column, and none of the table text is formatted vertically. For example, the following `.pdf` from the New Jersey Division of Elections website is perfectly formatted for `read_results()`:
 
