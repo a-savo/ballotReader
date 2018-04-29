@@ -79,10 +79,11 @@ head(out, 15)
 
 `read_clarity_results()` contains five important arguments:
 * `file` should be a link to either the website's home page (if Web01) or a direct link to the desired `.zip` file (if Web02). See below for the difference between Web01 and Web02.
-* `destfile` is the directory where the `.zip` file will be downloaded and unzipped. If you are also going to import and tidy the `detail.xls` report, do not set `destfile` outside of the current working directory.
-* `report` should only have a value for Web01 sites. Pick from "csv", "xls", "xml", or "txt".
-* `tidy_detail` is FALSE by default. Set `tidy_detail` to TRUE in order to import and tidy precinct-level election results from the `detail.xls` report. Be aware that this part of the function can take a *long* time to run for large reports with many elections.
-* `page_range` should only have a value if `tidy_detail` is TRUE. Set `page_range` to a numeric vector from 3 to n (i.e. `c(3:n)`) to only import and tidy a subset of the `detail.xls` report. Users may want to run `read_clarity_results()` with `tidy_detail` set to FALSE at first in order to determine how many pages to import.
+* `directory` is the directory where the report will be unzipped and loaded from.
+* `filename` is the file name for the report, including the file extension (i.e. `.csv`, `.xls`, `.xml`, `.txt`). This is set to NULL by default, but it is recommended to use unique names for each report if you plan to download multiple reports, as Clarity Elections websites use the same default report names for each site.
+* `report` is only used for Web01 sites. Pick from "csv", "xls", "xml", or "txt".
+* `tidy_detail` is FALSE by default. Set `tidy_detail` to TRUE in order to import and tidy precinct-level election results from the `detail.xls` report. Be aware that this part of the function can take a long time to run for large reports with many elections.
+* `page_range` is only used if `tidy_detail` is TRUE. Set `page_range` to a numeric vector from 3 to n (i.e. `3:n`) to only import and tidy a subset of the `detail.xls` report. Users may want to run `read_clarity_results()` with `tidy_detail` set to FALSE at first in order to determine how many pages to import.
 
 <img src = "https://i.imgur.com/BPFuOJS.jpg" alt = "Web01: Gloucester County, left        Web02: Essex County, right" width = "700">
 
@@ -92,7 +93,7 @@ Clarity Elections websites generally come in one of two formats, Web01 and Web02
 Web01:
 ```R
 url <- "http://results.enr.clarityelections.com/NJ/Gloucester/71871/191307/Web01/en/summary.html"
-out <- read_clarity_results(url, "gloucester.zip", report = "xls", tidy_detail = TRUE, page_range = 3:5)
+out <- read_clarity_results(url, directory = "data/", filename = "gloucester.xls", report = "xls", tidy_detail = TRUE, page_range = 3:5)
 head(out[[1]], 15)
                     Race Candidate         Vote Type            Locality Votes
 1  Governor (Vote For 1)           Registered Voters  Clayton District 1   845
@@ -115,7 +116,7 @@ head(out[[1]], 15)
 Web02:
 ```R
 url <- "http://results.enr.clarityelections.com/NJ/Essex/72004/191383/reports/detailxls.zip"
-out <- read_clarity_results(url, "essex.zip", tidy_detail = TRUE, page_range = 3:5)
+out <- read_clarity_results(url, directory = "data/", filename = "essex.xls", tidy_detail = TRUE, page_range = 3:5)
 head(out[[1]], 15)
                                        Race Candidate         Vote Type       Locality Votes
 1  For Governor / Lt. Governor (Vote For 1)           Registered Voters Belleville 1-1   901
@@ -171,8 +172,8 @@ head(no_totals)
 
 * Add functionality so that `read_` functions can take in a list of URLs/docs
 * Add more helper functions as appropriate
+** Develop `separate_party()` to separate political party from the candidate column where appropriate
 * Construct a read function for two-column summary reports [(example)](http://www.camdencounty.com/wp-content/uploads/files/2016%20CamCo%20General%20Election%20Canvasser.pdf)
 * `read_results()` should be able to create a list of elections for documents that contain multiple elections, as `return_clarity_results()` does
 * `read_vertical_results()` should be able to handle a second non-vote column
 * `read_vertical_results()` should automatically retrieve and build column names
-* `read_clarity_results()` should have a way to load `detail.xls` if the `.zip` file is saved outside of the current working directory.
