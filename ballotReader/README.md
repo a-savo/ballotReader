@@ -10,7 +10,7 @@ ballotReader can be installed by running the following command in the R console:
 devtools::install_github("a-savo/govt496/ballotReader")
 ```
 
-In order to use most ballotReader functions, users must first install rOpenSci's [tabulizer](https://github.com/ropensci/tabulizer) package via Github as well as a recent version of Java.
+In order to use most ballotReader functions, users must first install rOpenSci's [tabulizer](https://github.com/ropensci/tabulizer) package via Github as well as a recent version of [Java](https://java.com/en/download/) and the [Java Development Kit](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
 
 ## Code Examples
 
